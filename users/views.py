@@ -42,7 +42,7 @@ def votes(request):
     'mymembers': mymembers,
   }
     return HttpResponse(template.render(context, request))
-   
+#Checks if the user has already voted and allows update
 @login_required
 def update(request, id):
     username= request.user.username
