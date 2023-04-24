@@ -1,8 +1,7 @@
 # Vote-For-Breakfast
 A webapp designed for voting breakfast for the day
 
-
-Steps to run :
+##Steps to run :
 <br>
 1) Create a Virtual Environment :
 <br>
