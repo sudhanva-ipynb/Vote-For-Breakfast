@@ -3,24 +3,24 @@ A webapp designed for voting breakfast for the day
 
 ## Steps to run :
 <br>
-## 1) Create a Virtual Environment :
+<strong>1) Create a Virtual Environment :</strong>
 <br>
       python -m venv venv
       <br>
-## 2)Activate the virtual environment : 
+<strong>2)Activate the virtual environment : </strong>
 <br>
       venv\Scripts\Activate.bat
       <br>
-## 3)Install the requirements :
+<strong>3)Install the requirements :</strong>
 <br>
       pip install -r requirements
       <br>
-## 4) Make database Migrations :
+<strong>4) Make database Migrations :</strong>
 <br>
       python manage.py make migrations
       python manage.py migrate
       <br>
-## 5)Run the Project :
+<strong>5)Run the Project :</strong>
 <br>
       python manage.py runserver
       
