@@ -5,8 +5,13 @@
     <div class="container">
             <div class="row g-0">
                 <div class="col-sm-6 col-md-8" id="header-text">
+                    {% if user.is_superuser %}
+                    <h2 id="header-h1"> Standings:  </h2>
+                    {% else %}
                   <h2 id="header-h1">Please come again tomorrow<br><br> Standings:  </h2>
-                  <br>
+
+                    {% endif %}
+                 <br>
                 </div>
                 {% for x in mydata %}
                 <h1 id="header-h1">{{x.mealname}}</h1>
