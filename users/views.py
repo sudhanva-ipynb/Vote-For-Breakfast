@@ -47,7 +47,6 @@ def votes(request):
 def update(request, id):
     username= request.user.username
     lastVote=Voted.objects.filter(user=username).values("timeVoted")
-    print(len(lastVote))
     if len(lastVote) == 0:
         BreakFast.objects.filter(id=id).update(voteCount=F("voteCount") + 1)
         newVote=Voted(user=username,timeVoted=datetime.utcnow())
@@ -56,9 +55,9 @@ def update(request, id):
         messages.success(request, f'Vote cast successfully')
         return render(request, 'users/update.html', {'mydata': mydata})
 
-    if lastVote[0]["timeVoted"].date() == datetime.now().date():
+    if lastVote[0]["timeVoted"].date() == datetime.utcnow().date():
         mydata = BreakFast.objects.all().order_by('-voteCount').values()
-        messages.info(request, f'You can vote only once')
+        messages.info(request, f'Hello {username},You have already voted today')
 
         return render(request, 'users/invalidVote.html', {'mydata': mydata})
 
@@ -66,6 +65,13 @@ def update(request, id):
     BreakFast.objects.filter(id=id).update(voteCount=F("voteCount") + 1)
     Voted.objects.filter(user=username).update(timeVoted=datetime.utcnow())
     mydata = BreakFast.objects.all().order_by('-voteCount').values()
-    messages.success(request, f'Vote cast successfully')
+    messages.success(request, f'Hello {username}, Your vote was cast successfully')
     return render(request, 'users/update.html',{'mydata':mydata})
   
+@login_required
+def standings(request):
+    username = request.user.username
+    mydata = BreakFast.objects.all().order_by('-voteCount').values()
+    messages.info(request, f'Hello {username}')
+    return render(request, 'users/invalidVote.html', {'mydata': mydata})
+
